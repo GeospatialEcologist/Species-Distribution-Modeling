@@ -1,0 +1,52 @@
+################################################################################
+################################################################################
+############## Convert Occurrence Data Frame to SF Object ######################
+################################################################################
+################################################################################
+
+# Install sf (if not already done so)
+install.packages("sf")
+install.packages("rnaturalearth")
+install.packages("rnaturalearthdata")
+install.packages("ggplot2")
+
+
+# Load sf
+library(sf)
+library(ggplot2)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+
+# Create sf object
+spp.sf <- st_as_sf(spp.df, coords = c("longitude", "latitude"), # select coords column names
+                   crs = 4296, remove = F) # epsg code of 4296 is lat long
+
+# Option for CRS transformation
+# spp.sf <- st_transform(spp.sf, crs = epsg code)
+  
+  # EPSG codes:
+# Albers equal area: 5070
+# WGS84: 4326
+
+# plot newly created sf object
+plot(spp.sf$geometry)
+
+world <- ne_countries(scale = "medium", returnclass = "sf") # gathering countries from natural earth pkg
+# NOTE: defaults to lat/long crs
+
+# plot countries and species occurrences
+ggplot(data = world) +
+  geom_sf() +
+  geom_sf(data = spp.sf)
+
+# NOTE: Look at occurrences on world map. Which make sense? Which do not? For example, 
+# Blue spruce found in the middle of the pacific doesn't make sense. This is where
+# prior knowledge on the species' range comes in handy. 
+
+# outfile and save data
+spp.df <- st_drop_geometry(spp.sf)
+save(spp.sf, spp.df, file = "your directory")
+
+st_write(spp.sf, dsn="your directory", layer = "spp.sf", driver = "ESRI Shapefile",
+         delete_layer = T, delete_dsn = T) # output shapefile
