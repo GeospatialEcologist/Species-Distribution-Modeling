@@ -4,14 +4,14 @@
 ################################################################################
 ################################################################################
 
-# Install sf (if not already done so)
+# Install pkgs (if not already done so)
 install.packages("sf")
 install.packages("rnaturalearth")
 install.packages("rnaturalearthdata")
 install.packages("ggplot2")
 
 
-# Load sf
+# Load pkgs
 library(sf)
 library(ggplot2)
 library(rnaturalearth)
