@@ -1,0 +1,33 @@
+################################################################################
+################################################################################
+########### Organize and Vett Species Occurrence Data ##########################
+################################################################################
+################################################################################
+
+# Examine spp.df from raw data import
+dim(spp.df)
+
+# add presence column of 1
+spp.df$PA <- 1 # adding presence
+
+# examine
+head(spp.df,2)
+
+# rearrange the dataframe
+names(spp.df) # names
+spp.df <- spp.df[c(2:3, 8)] # only want x,y,pres
+head(spp.df,2) # check
+
+# remove missing values
+length(which(is.na(spp.df$longitude))) # which column is NA for longitude
+length(which(is.na(spp.df$latitude))) # latitude
+
+# check dimension (row x col)
+dim(spp.df)
+
+spp.df <- na.omit(spp.df) # remove rows with missing values
+dim(spp.df) # check
+
+# check missing, should be zero
+which(is.na(spp.df))
+
