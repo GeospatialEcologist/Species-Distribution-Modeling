@@ -6,3 +6,4 @@ Example species is Blue Spruce (Picea pungens).
 Follow code through the following list:
 1. Import Species Occurrence Data
 2. Organize and Vett Occurrence Data
+3. Convert Occurrence Data Frame to SF Object
