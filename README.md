@@ -1,5 +1,5 @@
 # Species-Distribution-Modeling
-Contains scripts/code for creating species distribution models. From gathering and manipulating raw data to machine learning and Bayesian spatial modeling, this repository has it all.
+Contains scripts/code for creating species distribution models in the R language. From gathering and manipulating raw data to machine learning and Bayesian spatial modeling, this repository has it all.
 
 Example species is Blue Spruce (Picea pungens). 
 
